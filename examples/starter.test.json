@@ -3,9 +3,9 @@
   "description": "Basic example showing common test scenarios",
   "timeout": 30000,
   "variables": {
-    "baseUrl": "https://example.com",
-    "email": "user@example.com",
-    "password": "testpass123"
+    "baseUrl": "https://www.saucedemo.com",
+    "username": "standard_user",
+    "password": "secret_sauce"
   },
   "tests": [
     {
@@ -35,7 +35,7 @@
         },
         {
           "action": "click",
-          "selector": "a:has-text('Login')"
+          "selector": "input[id='login-button']"
         },
         {
           "action": "waitForNavigation",
@@ -52,26 +52,21 @@
       "steps": [
         {
           "action": "navigate",
-          "url": "${baseUrl}/login"
-        },
-        {
-          "action": "waitFor",
-          "selector": "input[type='email']",
-          "timeout": 5000
+          "url": "${baseUrl}"
         },
         {
           "action": "fill",
-          "selector": "input[type='email']",
-          "value": "${email}"
+          "selector": "input[id='user-name']",
+          "value": "${username}"
         },
         {
           "action": "fill",
-          "selector": "input[type='password']",
+          "selector": "input[id='password']",
           "value": "${password}"
         },
         {
           "action": "log",
-          "value": "Filled email and password fields"
+          "value": "Filled username and password fields"
         },
         {
           "action": "screenshot",
@@ -84,21 +79,21 @@
       "steps": [
         {
           "action": "navigate",
-          "url": "${baseUrl}/login"
+          "url": "${baseUrl}"
         },
         {
           "action": "fill",
-          "selector": "input[type='email']",
-          "value": "${email}"
+          "selector": "input[id='user-name']",
+          "value": "${username}"
         },
         {
           "action": "fill",
-          "selector": "input[type='password']",
+          "selector": "input[id='password']",
           "value": "${password}"
         },
         {
           "action": "click",
-          "selector": "button:has-text('Login')"
+          "selector": "input[id='login-button']"
         },
         {
           "action": "waitForNavigation",
@@ -106,7 +101,7 @@
         },
         {
           "action": "assertUrl",
-          "url": "${baseUrl}/dashboard",
+          "url": "${baseUrl}/inventory.html",
           "partial": true,
           "timeout": 5000
         },
@@ -121,115 +116,22 @@
       "steps": [
         {
           "action": "navigate",
-          "url": "${baseUrl}/dashboard"
+          "url": "${baseUrl}/inventory.html"
         },
         {
           "action": "assertElementVisible",
-          "selector": ".dashboard-header",
+          "selector": "span[data-test=\"title\"]",
           "timeout": 5000
         },
         {
           "action": "assertText",
-          "selector": "h1",
-          "text": "Dashboard",
+          "selector": "span[data-test=\"title\"]",
+          "text": "Products",
           "partial": true
         },
         {
           "action": "log",
-          "value": "Dashboard page verified"
-        }
-      ]
-    },
-    {
-      "name": "Test 6: Checkbox and selection",
-      "steps": [
-        {
-          "action": "navigate",
-          "url": "${baseUrl}/settings"
-        },
-        {
-          "action": "waitFor",
-          "selector": "input[type='checkbox']",
-          "timeout": 5000
-        },
-        {
-          "action": "check",
-          "selector": "input[name='notifications']"
-        },
-        {
-          "action": "select",
-          "selector": "select[name='theme']",
-          "value": "dark"
-        },
-        {
-          "action": "click",
-          "selector": "button:has-text('Save')"
-        },
-        {
-          "action": "log",
-          "value": "Updated settings successfully"
-        }
-      ]
-    },
-    {
-      "name": "Test 7: Waiting for dynamic elements",
-      "steps": [
-        {
-          "action": "navigate",
-          "url": "${baseUrl}/data-loading"
-        },
-        {
-          "action": "waitForVisible",
-          "selector": ".loading-spinner",
-          "timeout": 2000
-        },
-        {
-          "action": "waitForHidden",
-          "selector": ".loading-spinner",
-          "timeout": 10000
-        },
-        {
-          "action": "assertElementVisible",
-          "selector": ".data-table",
-          "timeout": 5000
-        },
-        {
-          "action": "log",
-          "value": "Data loaded successfully"
-        }
-      ]
-    },
-    {
-      "name": "Test 8: Count elements",
-      "steps": [
-        {
-          "action": "navigate",
-          "url": "${baseUrl}/items"
-        },
-        {
-          "action": "waitFor",
-          "selector": ".item-card",
-          "timeout": 5000
-        },
-        {
-          "action": "assertCount",
-          "selector": ".item-card",
-          "count": 10
-        },
-        {
-          "action": "log",
-          "value": "Verified 10 items are displayed"
-        }
-      ]
-    },
-    {
-      "name": "Skipped Test - To be implemented",
-      "skip": true,
-      "skipReason": "Feature not yet implemented",
-      "steps": [
-        {
-          "action": "navigate",
-          "url": "${baseUrl}/future-feature"
+          "value": "Inventory page verified"
         }
       ]
     }

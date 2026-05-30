@@ -4,11 +4,11 @@
   "description": "Low-code JSON-based UI test automation engine powered by Playwright",
   "main": "src/engine.ts",
   "scripts": {
-    "test": "ts-node runner.ts examples/example.test.json",
-    "test:headless": "ts-node runner.ts examples/example.test.json --headless=true",
-    "test:debug": "ts-node runner.ts examples/example.test.json --headless=false --slowMo=1000",
-    "test:firefox": "ts-node runner.ts examples/example.test.json --browser=firefox",
-    "test:webkit": "ts-node runner.ts examples/example.test.json --browser=webkit",
+    "test": "ts-node runner.ts examples/starter.test.json",
+    "test:headless": "ts-node runner.ts examples/starter.test.json --headless=true",
+    "test:debug": "ts-node runner.ts examples/starter.test.json --headless=false --slowMo=1000",
+    "test:firefox": "ts-node runner.ts examples/starter.test.json --browser=firefox",
+    "test:webkit": "ts-node runner.ts examples/starter.test.json --browser=webkit",
     "build": "tsc",
     "clean": "rm -rf dist artifacts"
   },
