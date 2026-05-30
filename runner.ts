@@ -30,7 +30,7 @@ Examples:
 
   const testFilePath = args[0];
   let browserType: 'chromium' = 'chromium';
-  let headless = false;
+  let headless = true;
   let slowMo = 0;
 
   // Parse options
