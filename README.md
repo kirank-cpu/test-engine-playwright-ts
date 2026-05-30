@@ -13,6 +13,37 @@ A powerful JSON-based UI test automation engine built on top of Playwright. Writ
 ✅ **HTML Reports** - Beautiful, detailed test execution reports  
 ✅ **Multiple Browsers** - Chromium, Firefox, WebKit support  
 ✅ **Cross-Platform** - Windows, macOS, Linux  
+✅ **Visual Test Recorder** - Record tests with a beautiful React UI (no coding required!)
+
+---
+
+## 🎬 Visual Test Recorder
+
+Don't want to write JSON manually? Use our **Visual Test Recorder** to record UI interactions and automatically generate JSON test files!
+
+### Quick Start with Recorder
+
+```bash
+# Navigate to the recorder directory
+cd recorder
+
+# Install dependencies
+npm install
+
+# Start the visual recorder
+npm run dev
+```
+
+Then open `http://localhost:3000` and start recording! 
+
+The recorder features:
+- 🎯 18+ action types (Navigate, Click, Fill, Assert, etc.)
+- 📋 Dropdown and text field support for all inputs
+- 📸 Live JSON preview
+- 📥 One-click download to JSON file
+- ✨ Beautiful gradient UI
+
+[Full Recorder Documentation](./recorder/README.md)
 
 ---
 
