@@ -1,0 +1,36 @@
+{
+  "name": "low-code-test-automation-engine",
+  "version": "1.0.0",
+  "description": "Low-code JSON-based UI test automation engine powered by Playwright",
+  "main": "src/engine.ts",
+  "scripts": {
+    "test": "ts-node runner.ts examples/example.test.json",
+    "test:headless": "ts-node runner.ts examples/example.test.json --headless=true",
+    "test:debug": "ts-node runner.ts examples/example.test.json --headless=false --slowMo=1000",
+    "test:firefox": "ts-node runner.ts examples/example.test.json --browser=firefox",
+    "test:webkit": "ts-node runner.ts examples/example.test.json --browser=webkit",
+    "build": "tsc",
+    "clean": "rm -rf dist artifacts"
+  },
+  "keywords": [
+    "automation",
+    "testing",
+    "playwright",
+    "ui-testing",
+    "end-to-end",
+    "low-code"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

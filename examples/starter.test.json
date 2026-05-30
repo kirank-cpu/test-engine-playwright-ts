@@ -1,0 +1,237 @@
+{
+  "name": "Simple Login Test Example",
+  "description": "Basic example showing common test scenarios",
+  "timeout": 30000,
+  "variables": {
+    "baseUrl": "https://example.com",
+    "email": "user@example.com",
+    "password": "testpass123"
+  },
+  "tests": [
+    {
+      "name": "Test 1: Navigate to website",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}"
+        },
+        {
+          "action": "waitFor",
+          "selector": "body",
+          "timeout": 5000
+        },
+        {
+          "action": "log",
+          "value": "Successfully navigated to ${baseUrl}"
+        }
+      ]
+    },
+    {
+      "name": "Test 2: Find and click login button",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}"
+        },
+        {
+          "action": "click",
+          "selector": "a:has-text('Login')"
+        },
+        {
+          "action": "waitForNavigation",
+          "timeout": 5000
+        },
+        {
+          "action": "log",
+          "value": "Clicked login button"
+        }
+      ]
+    },
+    {
+      "name": "Test 3: Fill login form",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/login"
+        },
+        {
+          "action": "waitFor",
+          "selector": "input[type='email']",
+          "timeout": 5000
+        },
+        {
+          "action": "fill",
+          "selector": "input[type='email']",
+          "value": "${email}"
+        },
+        {
+          "action": "fill",
+          "selector": "input[type='password']",
+          "value": "${password}"
+        },
+        {
+          "action": "log",
+          "value": "Filled email and password fields"
+        },
+        {
+          "action": "screenshot",
+          "name": "filled-form"
+        }
+      ]
+    },
+    {
+      "name": "Test 4: Submit form and verify success",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/login"
+        },
+        {
+          "action": "fill",
+          "selector": "input[type='email']",
+          "value": "${email}"
+        },
+        {
+          "action": "fill",
+          "selector": "input[type='password']",
+          "value": "${password}"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text('Login')"
+        },
+        {
+          "action": "waitForNavigation",
+          "timeout": 10000
+        },
+        {
+          "action": "assertUrl",
+          "url": "${baseUrl}/dashboard",
+          "partial": true,
+          "timeout": 5000
+        },
+        {
+          "action": "log",
+          "value": "Login successful! Navigated to dashboard"
+        }
+      ]
+    },
+    {
+      "name": "Test 5: Element visibility checks",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/dashboard"
+        },
+        {
+          "action": "assertElementVisible",
+          "selector": ".dashboard-header",
+          "timeout": 5000
+        },
+        {
+          "action": "assertText",
+          "selector": "h1",
+          "text": "Dashboard",
+          "partial": true
+        },
+        {
+          "action": "log",
+          "value": "Dashboard page verified"
+        }
+      ]
+    },
+    {
+      "name": "Test 6: Checkbox and selection",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/settings"
+        },
+        {
+          "action": "waitFor",
+          "selector": "input[type='checkbox']",
+          "timeout": 5000
+        },
+        {
+          "action": "check",
+          "selector": "input[name='notifications']"
+        },
+        {
+          "action": "select",
+          "selector": "select[name='theme']",
+          "value": "dark"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text('Save')"
+        },
+        {
+          "action": "log",
+          "value": "Updated settings successfully"
+        }
+      ]
+    },
+    {
+      "name": "Test 7: Waiting for dynamic elements",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/data-loading"
+        },
+        {
+          "action": "waitForVisible",
+          "selector": ".loading-spinner",
+          "timeout": 2000
+        },
+        {
+          "action": "waitForHidden",
+          "selector": ".loading-spinner",
+          "timeout": 10000
+        },
+        {
+          "action": "assertElementVisible",
+          "selector": ".data-table",
+          "timeout": 5000
+        },
+        {
+          "action": "log",
+          "value": "Data loaded successfully"
+        }
+      ]
+    },
+    {
+      "name": "Test 8: Count elements",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/items"
+        },
+        {
+          "action": "waitFor",
+          "selector": ".item-card",
+          "timeout": 5000
+        },
+        {
+          "action": "assertCount",
+          "selector": ".item-card",
+          "count": 10
+        },
+        {
+          "action": "log",
+          "value": "Verified 10 items are displayed"
+        }
+      ]
+    },
+    {
+      "name": "Skipped Test - To be implemented",
+      "skip": true,
+      "skipReason": "Feature not yet implemented",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/future-feature"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "name": "E-Commerce Application Tests",
+  "description": "Test suite for e-commerce platform",
+  "timeout": 30000,
+  "variables": {
+    "baseUrl": "https://demo.opencart.com",
+    "testEmail": "testuser@example.com",
+    "testPassword": "password123"
+  },
+  "tests": [
+    {
+      "name": "Homepage Navigation and Search",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}"
+        },
+        {
+          "action": "waitFor",
+          "selector": "body",
+          "timeout": 5000
+        },
+        {
+          "action": "assertElementVisible",
+          "selector": "h1",
+          "timeout": 5000
+        },
+        {
+          "action": "screenshot",
+          "name": "homepage"
+        },
+        {
+          "action": "fill",
+          "selector": "input[name='search']",
+          "value": "laptop"
+        },
+        {
+          "action": "press",
+          "key": "Enter"
+        },
+        {
+          "action": "waitForNavigation",
+          "timeout": 5000
+        },
+        {
+          "action": "assertText",
+          "selector": "h1",
+          "text": "Search",
+          "partial": true,
+          "timeout": 5000
+        }
+      ]
+    },
+    {
+      "name": "Product Browsing",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/index.php?route=product/category&path=20"
+        },
+        {
+          "action": "waitFor",
+          "selector": ".product-thumb",
+          "timeout": 5000
+        },
+        {
+          "action": "assertCount",
+          "selector": ".product-thumb",
+          "count": 4
+        },
+        {
+          "action": "click",
+          "selector": ".product-thumb:first-child a"
+        },
+        {
+          "action": "waitForNavigation",
+          "timeout": 5000
+        },
+        {
+          "action": "screenshot",
+          "name": "product-detail"
+        }
+      ]
+    },
+    {
+      "name": "Shopping Cart Operations",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/index.php?route=product/product&product_id=30"
+        },
+        {
+          "action": "waitFor",
+          "selector": "button[name='add-to-cart']",
+          "timeout": 5000
+        },
+        {
+          "action": "click",
+          "selector": "button[name='add-to-cart']"
+        },
+        {
+          "action": "wait",
+          "timeout": 2000
+        },
+        {
+          "action": "assertText",
+          "selector": ".alert-success",
+          "text": "Success",
+          "partial": true,
+          "timeout": 5000
+        },
+        {
+          "action": "click",
+          "selector": "a[title='Shopping Cart']"
+        },
+        {
+          "action": "waitForNavigation",
+          "timeout": 5000
+        },
+        {
+          "action": "assertText",
+          "selector": "h1",
+          "text": "Shopping Cart",
+          "timeout": 5000
+        }
+      ]
+    },
+    {
+      "name": "Form Validation",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}/index.php?route=account/register"
+        },
+        {
+          "action": "waitFor",
+          "selector": "input[name='firstname']",
+          "timeout": 5000
+        },
+        {
+          "action": "fill",
+          "selector": "input[name='firstname']",
+          "value": "John"
+        },
+        {
+          "action": "fill",
+          "selector": "input[name='lastname']",
+          "value": "Doe"
+        },
+        {
+          "action": "fill",
+          "selector": "input[name='email']",
+          "value": "${testEmail}"
+        },
+        {
+          "action": "fill",
+          "selector": "input[name='password']",
+          "value": "${testPassword}"
+        },
+        {
+          "action": "check",
+          "selector": "input[name='agree']"
+        },
+        {
+          "action": "screenshot",
+          "name": "registration-form-filled"
+        }
+      ]
+    },
+    {
+      "name": "Mobile Responsive Check",
+      "skip": false,
+      "skipReason": "Optional mobile test",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "${baseUrl}"
+        },
+        {
+          "action": "waitFor",
+          "selector": "body",
+          "timeout": 5000
+        },
+        {
+          "action": "assertElementVisible",
+          "selector": ".navbar-toggle",
+          "timeout": 5000
+        },
+        {
+          "action": "click",
+          "selector": ".navbar-toggle"
+        },
+        {
+          "action": "waitForVisible",
+          "selector": ".navbar-collapse",
+          "timeout": 3000
+        }
+      ]
+    }
+  ]
+}
