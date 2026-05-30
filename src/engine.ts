@@ -17,7 +17,8 @@ export class TestEngine {
   private page: Page | null = null;
   private results: ExecutionResult[] = [];
   private startTime: Date = new Date();
-  private artifactsPath: string = './artifacts';
+  private artifactsPath: string = './artifacts/';
+  private reportPath: string = './artifacts/test-reports/';
 
   constructor(config: Partial<BrowserConfig> = {}) {
     this.browserConfig = {
@@ -31,6 +32,11 @@ export class TestEngine {
     // Create artifacts directory
     if (!fs.existsSync(this.artifactsPath)) {
       fs.mkdirSync(this.artifactsPath, { recursive: true });
+    }
+
+    // Create report directory
+    if (!fs.existsSync(this.reportPath)) {
+      fs.mkdirSync(this.reportPath, { recursive: true });
     }
   }
 
@@ -249,7 +255,7 @@ export class TestEngine {
    * Export report to JSON
    */
   saveReportJson(report: ExecutionReport, fileName: string = 'test-report.json'): string {
-    const reportPath = path.join(this.artifactsPath, fileName);
+    const reportPath = path.join(this.reportPath, fileName);
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`📄 Report saved: ${reportPath}`);
     return reportPath;
@@ -260,7 +266,7 @@ export class TestEngine {
    */
   saveReportHtml(report: ExecutionReport, fileName: string = 'test-report.html'): string {
     const html = this.generateHtmlReport(report);
-    const reportPath = path.join(this.artifactsPath, fileName);
+    const reportPath = path.join(this.reportPath, fileName);
     fs.writeFileSync(reportPath, html);
     console.log(`📄 HTML Report saved: ${reportPath}`);
     return reportPath;
