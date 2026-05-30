@@ -6,7 +6,6 @@
 
 import { TestEngine } from './src/engine';
 import * as fs from 'fs';
-import * as path from 'path';
 
 async function main() {
   const args = process.argv.slice(2);
@@ -30,8 +29,8 @@ Examples:
   }
 
   const testFilePath = args[0];
-  let browserType: 'chromium' | 'firefox' | 'webkit' = 'chromium';
-  let headless = true;
+  let browserType: 'chromium' = 'chromium';
+  let headless = false;
   let slowMo = 0;
 
   // Parse options
